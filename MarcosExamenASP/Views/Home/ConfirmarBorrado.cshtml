@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Entidades.clsPersona>
+
+<h1>¿Confirmar Borrado?</h1>
+
+@{
+    bool hayPersonas = false; //Esto se encarga de decidir mostrar el mensaje de "no hay personas" si no hay personas en el departamento
+}
+
+<form asp-controller="Home" asp-action="ConfirmarBorrado" method="post">
+    <input type="hidden" name="idDepartamento" value="@ViewBag.IdDepartamento" />
+    <table class="table">
+
+        <tr><h3>Estas serán las personas a borrar, pulsa el botón para confirmar el borrado y volver.</h3></tr>
+        <br />
+        <h5>No se podrán borrar personas desde las 8:00 hasta las 17:59</h5>
+        <br />
+        <tbody>
+            @foreach (var item in Model)
+            {
+                hayPersonas = true;
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Nombre)</td>
+                    
+                    
+                </tr>
+            }
+        </tbody>
+        @if (!hayPersonas)
+        {
+            <br />
+            <h4>No hay personas en esta lista.</h4>
+        }
+    </table>
+    <button type="submit" class="btn btn-primary">Eliminar</button>
+</form>

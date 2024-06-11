@@ -1,0 +1,14 @@
+﻿@model IEnumerable<Entidades.clsDepartamento>
+
+<h3>Elige un departamento para borrar las personas en el departamento seleccionado</h3>
+
+<form asp-controller="Home" asp-action="ConfirmarBorrado" method="get">
+    <label for="lang">Departamento a Elegir:</label>
+    <select name="idDepartamento">
+        @foreach (Entidades.clsDepartamento dep in Model)
+        {
+            <option value="@dep.IdDepartamento">@dep.NombreDepartamento</option>
+        }
+    </select>
+    <button type="submit">Borrar personas</button>
+</form>

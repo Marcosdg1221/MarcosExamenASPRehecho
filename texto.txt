@@ -1,0 +1,71 @@
+Entidades;
+
+	clsPersona
+
+		int id {get};
+        string nombre {get};
+        string apellidos {get};
+        DateTime fechaNac {get};
+        string tlf {get};
+        string direccion {get};
+        string foto {get};
+        int idDept {get};
+		(constructor con todos y ningún parámetro)
+
+	clsDepartamento
+
+		int idDepartamento {get;}
+		string nombreDep {get;}
+		(constructor con los dos y ningún parámetro)
+
+
+		
+DAL;
+	
+	clsListadosDAL.cs
+
+		Métodos:
+
+		- public static List<clsPersona> ListaPersonasDAL()
+		- public static List<clsDepartamento> ListaDepartamentosDAL()
+		-public static List<clsPersona> ListapersonasPorDepDAL(int idDep) (Esto en clsHandler)
+		
+		-clsManejadora
+		-public void BorrarPersonas(List<clsPersona> personas)
+		
+		
+
+	clsConexion.cs
+
+		Método:
+		
+		-public static string CadenaConexion()		
+
+BL; (los domingos no se puede cambiar)
+
+	clsListadosBL.cs
+
+		-public static List<clsPersona> ListaPersonasBL()
+		-public static List<clsDepartamento> ListaDepartamentosBL()
+		-public static List<clsPersona> ListapersonasPorDepBL(int id)
+		-public static List<clsPersona> PersonasABorrarBL(List<clsPersona>)
+		-public void BorrarPersonas(List<clsPersona> personas)
+
+Models;
+
+Controllers (asp);
+
+	HomeController:
+
+		-public IActionResult Index()
+			return View listaDepartamentos
+	
+		
+		[httpDelete]
+		[ActionName("BorrarPersonas")]
+
+        	public IActionResult Index(int idDep)
+			return View(listaPersonasConNombreDep)
+
+			[HttpDelete]
+       public IActionResult ConfirmarBorrado()
